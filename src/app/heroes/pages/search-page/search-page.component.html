@@ -1,0 +1,13 @@
+<div class="flex flex-column p-2">
+  <h3>Buscador</h3>
+  <mat-form-field>
+    <mat-label>Buscador de Héroes</mat-label>
+    <input type="text" (input)="searchHero()" matInput [formControl]="searchInput" [matAutocomplete]="auto">
+  </mat-form-field>
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onSelectedOption($event)">
+    <mat-option *ngFor="let hero of herosOptions" [value]="hero">{{hero.superhero}}</mat-option>
+    <mat-option *ngIf="herosOptions.length===0 && searchInput.value && searchInput.value.length>0" value="">No hay
+      coincidencias con
+      {{searchInput.value}}</mat-option>
+  </mat-autocomplete>
+</div>
